@@ -41,6 +41,7 @@ end
 
 group :test do
   gem 'mrspec'
+  gem 'capybara'
 end
 
 group :development do

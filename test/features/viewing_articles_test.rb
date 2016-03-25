@@ -1,5 +1,4 @@
-class ViewingArticlesTest < Minitest::Test
-
+class ViewingArticlesTest < ActionDispatch::IntegrationTest
   # Viewing my articles
   #   Given that I already have 2 articles, named "thought1" and "thought2"
   #   I visit "/authors/josh-cheek"
