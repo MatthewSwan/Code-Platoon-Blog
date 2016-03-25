@@ -12,7 +12,7 @@ class ViewingArticlesTest < Minitest::Test
     # and "Matthew Swan" has an article named "wat"
     # And I am not logged in
     lolol = Article.new title: 'lolol', text: "lolol paragraph1 \n\n lolol paragraph2"
-    wat   = Article.new title: 'wat',   text: "wat   paragraph1 \n\n wat paragraph2"
+    wat   = Article.new title: 'wattt', text: "wat   paragraph1 \n\n wat paragraph2"
     josh  = User.create! name: 'Josh Cheek',   articles: [lolol]
     matt  = User.create! name: 'Matthew Swan', articles: [wat]
 
@@ -32,7 +32,7 @@ class ViewingArticlesTest < Minitest::Test
     # I see the article "wat" along with the first paragraph and a link to read more
     # The "Read More" link would send me to "/articles/62-wat"
     # I see that it was written by "Matthew Swan" and if I were to click the name, it would send me to "/authors/matthew-swan"
-    assert_equal "wat",             page.find('.article:first .title').text
+    assert_equal "wattt",           page.find('.article:first .title').text
     assert_equal "wat paragraph1",  page.find('.article:first .summary').text
     assert_equal article_path(wat), page.find('.article:first .read_more')['href']
     author_link = page.find('.article:first .author')
