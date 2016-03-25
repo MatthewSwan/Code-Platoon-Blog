@@ -18,16 +18,6 @@ class ViewingArticlesTest < ActionDispatch::IntegrationTest
     # I go to "/"
     page.visit root_path
 
-    # I see the article "lolol" along with the first paragraph and a link to read more
-    # The "Read More" link would send me to "/articles/7427-lolol"
-    # I see that it was written by "Josh Cheek" and if I were to click the name, it would send me to "/authors/josh-cheek"
-    assert_equal "lolol",             page.find('.article:first .title').text
-    assert_equal "lolol paragraph1",  page.find('.article:first .summary').text
-    assert_equal article_path(lolol), page.find('.article:first .read_more')['href']
-    author_link = page.find('.article:first .author')
-    assert_equal 'Josh Cheek', author_link.text
-    assert_equal author_path(josh), author_link['href']
-
     # I see the article "wat" along with the first paragraph and a link to read more
     # The "Read More" link would send me to "/articles/62-wat"
     # I see that it was written by "Matthew Swan" and if I were to click the name, it would send me to "/authors/matthew-swan"
@@ -36,6 +26,16 @@ class ViewingArticlesTest < ActionDispatch::IntegrationTest
     assert_equal article_path(wat), page.find('.article:first .read_more')['href']
     author_link = page.find('.article:first .author')
     assert_equal 'Matthew Swan', author_link.text
-    assert_equal author_path(matt), author_link['href']
+    assert_equal user_path(matt), author_link['href']
+
+    # I see the article "lolol" along with the first paragraph and a link to read more
+    # The "Read More" link would send me to "/articles/7427-lolol"
+    # I see that it was written by "Josh Cheek" and if I were to click the name, it would send me to "/authors/josh-cheek"
+    assert_equal "lolol",             page.find('.article:nth-child(2) .title').text
+    assert_equal "lolol paragraph1",  page.find('.article:nth-child(2) .summary').text
+    assert_equal article_path(lolol), page.find('.article:nth-child(2) .read_more')['href']
+    author_link = page.find('.article:nth-child(2) .author')
+    assert_equal 'Josh Cheek', author_link.text
+    assert_equal user_path(josh), author_link['href']
   end
 end

@@ -1,2 +1,10 @@
-<h1>Hello, Rails!</h1>
-<%= link_to 'My Blog', controller: 'articles' %>
+<div class="articles">
+  <% @articles.each do |article| %>
+    <div class="article">
+      <a class="author" href="<%= user_path(article.user) %>"><%= article.user.name %></a>
+      <div class="title"><%= article.title %></div>
+      <div class="summary"><%= article.summary %></div>
+      <a class="read_more" href="<%= article_path(article) %>">Read More</a>
+    </div>
+  <% end %>
+</div>
