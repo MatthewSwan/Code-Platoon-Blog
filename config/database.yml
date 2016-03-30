@@ -6,7 +6,7 @@
 #
 default: &default
   adapter: postgresql
-  database: postgres_database_blog
+  database: blog_development
   pool: 5
   timeout: 5000
 
