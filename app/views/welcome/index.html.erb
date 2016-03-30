@@ -1,7 +1,22 @@
 <div class="articles">
   <% @articles.each do |article| %>
     <div class="article">
-      <a class="author" href="<%= user_path(article.user) %>"><%= article.user.name %></a>
+      <%
+        default_user = Object.new
+        def default_user.id
+          101
+        end
+        def default_user.to_param
+          "#{id}-#{name.downcase.gsub(/\W+/, '-')}"
+        end
+        def default_user.name
+          'David Heinememeinz Hanson'
+        end
+
+        user = article.user
+        user ||= default_user
+    %>
+      <a class="author" href="<%= user_path(user) %>"><%= user.name %></a>
       <div class="title"><%= article.title %></div>
       <div class="summary"><%= article.summary %></div>
       <a class="read_more" href="<%= article_path(article) %>">Read More</a>
