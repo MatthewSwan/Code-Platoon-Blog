@@ -10,8 +10,8 @@ class ViewingArticlesTest < ActionDispatch::IntegrationTest
     # Given that "Josh Cheek" has an article named "lolol"
     # and "Matthew Swan" has an article named "wat"
     # And I am not logged in
-    lolol = Article.new title: 'lolol', text: "lolol paragraph1 \n\n lolol paragraph2"
-    wat   = Article.new title: 'wattt', text: "wat   paragraph1 \n\n wat paragraph2"
+    lolol = Article.new title: 'lolol', text: "lolol paragraph1 lolol paragraph2"
+    wat   = Article.new title: 'wattt', text: "wat paragraph1 wat paragraph2"
     josh  = User.create! name: 'Josh Cheek',   articles: [lolol]
     matt  = User.create! name: 'Matthew Swan', articles: [wat]
 
@@ -22,7 +22,7 @@ class ViewingArticlesTest < ActionDispatch::IntegrationTest
     # The "Read More" link would send me to "/articles/62-wat"
     # I see that it was written by "Matthew Swan" and if I were to click the name, it would send me to "/authors/matthew-swan"
     assert_equal "wattt",           page.find('.article:first .title').text
-    assert_equal "wat paragraph1",  page.find('.article:first .summary').text
+    assert_equal "wat paragraph1 wat p...",  page.find('.article:first .summary').text
     assert_equal article_path(wat), page.find('.article:first .read_more')['href']
     author_link = page.find('.article:first .author')
     assert_equal 'Matthew Swan', author_link.text
@@ -32,7 +32,7 @@ class ViewingArticlesTest < ActionDispatch::IntegrationTest
     # The "Read More" link would send me to "/articles/7427-lolol"
     # I see that it was written by "Josh Cheek" and if I were to click the name, it would send me to "/authors/josh-cheek"
     assert_equal "lolol",             page.find('.article:nth-child(2) .title').text
-    assert_equal "lolol paragraph1",  page.find('.article:nth-child(2) .summary').text
+    assert_equal "lolol paragraph1 lol...",  page.find('.article:nth-child(2) .summary').text
     assert_equal article_path(lolol), page.find('.article:nth-child(2) .read_more')['href']
     author_link = page.find('.article:nth-child(2) .author')
     assert_equal 'Josh Cheek', author_link.text
