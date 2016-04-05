@@ -37,7 +37,7 @@ class CreatingAtriclesTest < ActionDispatch::IntegrationTest
     # I go to "/" and see that my post is listed at the top of the list of posts
     page.visit root_path
     assert_equal 'My latest thoughts', page.find('.article:first .title').text
-    assert_equal 'Some like it hot, so...', page.find('.article:first .summary').text
+    assert_equal 'Some like it hot, some...', page.find('.article:first .summary').text
   end
 end
 
