@@ -4,10 +4,6 @@ class Article < ActiveRecord::Base
   validates :title, presence: true
 
   def summary
-    if text.length > 20
-      text[0..19] + '...'
-    else
-      text
-    end
+    text.truncate(25, separator: ' ')
   end
 end
