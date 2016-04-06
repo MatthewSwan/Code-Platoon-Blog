@@ -5,10 +5,5 @@ class Article < ActiveRecord::Base
 
   def summary
     text.truncate(25, separator: ' ')
-    # if text.length > 20
-      # text[0..19] + '...'
-    # else
-      # text
-    # end
   end
 end
