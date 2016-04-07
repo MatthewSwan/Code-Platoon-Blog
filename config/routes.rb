@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
+  get 'sessions/create'
+
+  get 'sessions/destroy'
+
+  # get 'welcome/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -10,7 +14,15 @@ Rails.application.routes.draw do
   resources :users
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+  # root 'welcome#index'
+  root 'users#new'
+
+  match "/auth/:provider/callback" => "sessions#create", :via => [:get, :post]
+  # get "/signout" => "sessions#destroy", :as => :signout
+  get 'auth/developer', :as => 'developer_auth'
+  get 'auth/github', :as => 'github_auth'
+
+  get 'sessions/destroy', :as => 'logout'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
