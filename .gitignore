@@ -14,12 +14,5 @@
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep
-<<<<<<< HEAD
-<<<<<<< HEAD
 /tmp
-=======
-tmp/
->>>>>>> parent of de884b4... Revert "changed summary method to use better built in (truncate) method"
-=======
-tmp/
->>>>>>> parent of de884b4... Revert "changed summary method to use better built in (truncate) method"
+/config/secrets.yml
