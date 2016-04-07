@@ -12,6 +12,8 @@ class ViewingArticlesTest < ActionDispatch::IntegrationTest
     # And I am not logged in
     lolol = Article.new title: 'lolol', text: "lolol paragraph1 lolol paragraph2"
     wat   = Article.new title: 'wattt', text: "wat paragraph1 wat paragraph2"
+    # require "pry"
+    # binding.pry
     josh  = User.create! name: 'Josh Cheek',   articles: [lolol]
     matt  = User.create! name: 'Matthew Swan', articles: [wat]
 
