@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  before_filter :ensure_logged_in, :unless => :logged_in?
+
   def index
     @articles = Article.all
   end
@@ -43,7 +45,11 @@ class ArticlesController < ApplicationController
   end
 
   private
-    def article_params
-      params.require(:article).permit(:title, :text)
-    end
+  def article_params
+    params.require(:article).permit(:title, :text)
+  end
+
+  def ensure_logged_in
+    redirect_to :root unless logged_in?
+  end
 end
