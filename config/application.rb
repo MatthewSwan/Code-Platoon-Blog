@@ -22,5 +22,10 @@ module Blog
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.middleware.use OmniAuth::Builder do
+      provider :developer if Rails.env.development?
+      provider :github, 'c9949bea1ff1e9f270ed', 'ba1bce0f7b80f829882e4fb774aac97ab5d6d3cd'
+    end
   end
 end
